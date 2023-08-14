@@ -1,7 +1,7 @@
 .registrationHero {
   background: url("../../../assets/HeroImage.png") no-repeat;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 4.8rem);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -10,6 +10,7 @@
   overflow-y:hidden ;
   /* position: fixed; */
 }
+
 .registrationHeroContent {
   width: 33.7rem;
   height: 12rem;
@@ -22,6 +23,7 @@
   line-height: 4rem;
   color: #ffffff;
 }
+
 .registrationHeroContentSpan {
   font-family: "Segoe UI";
   font-style: normal;
@@ -29,7 +31,13 @@
   font-size: 3rem;
   line-height: 4rem;
   color: #3b61cf;
+
 }
+.registrationHeroContent .registrationkiitchapter
+{
+  font-weight: 400;
+}
+
 
 /* media queries */
 
