@@ -1,9 +1,9 @@
 .registrationForm {
   background-color: #000000;
   width: 68.2rem;
-  height: 110vh;
+  height: 100vh;
 
-  margin-top: -5rem;
+  /* margin-top: -5rem; */
   overflow-y: scroll;
   overflow-x: hidden;
   /* position: relative; */
@@ -41,6 +41,7 @@
   padding-bottom: 4px;
   position: relative;
   text-decoration: none;
+  z-index: 0;
 }
 
 .registrationFormHeading p::after {
