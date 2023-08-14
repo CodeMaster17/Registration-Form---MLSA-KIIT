@@ -1,7 +1,7 @@
 .registrationHero {
   background: url("../../../assets/HeroImage.png") no-repeat;
   width: 100%;
-  height: screen;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
