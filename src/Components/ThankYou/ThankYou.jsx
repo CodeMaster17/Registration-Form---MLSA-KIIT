@@ -7,9 +7,9 @@ function ThankYou() {
     <div className="registrationThankYou">
       <div className="registrationThankYouContainer">
         <h5>Thank You For Registering</h5>
-        <div className="registrationThankYouELLipse">
+        {/* <div className="registrationThankYouELLipse">
           <img src={checkedIcon} />
-        </div>
+        </div> */}
         <div className="registrationThankYouContent">
           <p>Our Team Has Received Your Submission.We Will Contact You Asap.</p>
           <p>

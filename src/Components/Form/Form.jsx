@@ -50,9 +50,9 @@ const Form = () => {
     <>
       <Toaster position="bottom-right" reverseOrder={false} />
       <div className="registrationForm">
-      <div className='registrationFormELLipse'>
+      {/* <div className='registrationFormELLipse'>
       <img src={docsIcon}/>
-      </div>
+      </div> */}
         <div className="registrationFormContainer">
           <form onSubmit={handleSubmit}>
             <div className="registrationFormHeading formFirstHeading">
