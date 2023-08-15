@@ -205,7 +205,7 @@ const startApp = async () => {
         console.log(`Successfully connected with the Database`);
 
         // Start Listenting for the server on PORT
-        app.listen(5000, async () => {
+        app.listen(async () => {
             console.log(`Server started on PORT 5000`);
         });
     } catch (err) {

@@ -35,8 +35,10 @@ const Form = () => {
       try {
         res = await axios.post("http://localhost:5000/api/register", values);        
       } catch (error) {
+        console.log(error);
         errNotify(error);
       }
+      console.log(res.response.data);
 
 
       if (res.status === 200) {
@@ -236,7 +238,8 @@ const Form = () => {
             (errors.branch && touched.branch) ||
             (errors.kiitEmailId && touched.kiitEmailId) ||
             (errors.personalEmailId && touched.personalEmailId) ||
-            (errors.phoneNumber && touched.phoneNumber) ||
+              (errors.phoneNumber && touched.phoneNumber) ||
+              (errors.interestedField && touched.interestedField)||
             (errors.linkedin && touched.linkedin) ||
             (errors.github && touched.github) ? (
               <div className="registrationFormErrorMessage">
