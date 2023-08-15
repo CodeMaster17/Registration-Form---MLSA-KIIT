@@ -38,7 +38,7 @@ const Form = () => {
         console.log(error);
         errNotify(error);
       }
-      console.log(res.response.data);
+      console.log(res);
 
 
       if (res.status === 200) {
