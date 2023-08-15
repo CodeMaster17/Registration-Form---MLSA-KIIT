@@ -33,7 +33,7 @@ const Form = () => {
     onSubmit: async (values, action) => {
       let res;
       try {
-        res = await axios.post("http://localhost:5000/api/register", values);        
+        res = await axios.post("https://fuzzy-spork.unknownclub.me/api/register", values);        
       } catch (error) {
         console.log(error);
         errNotify(error);
