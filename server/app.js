@@ -15,7 +15,7 @@ const app = express();
 app.use(
 	cors({
 		credentials: true,
-		origin: ['https://mlsa.unknownclub.me','http://localhost:5173','https://registration-form-mlsa-kiit-nu.vercel.app'],
+		origin: ['https://mlsa.unknownclub.me','http://localhost:5173','https://registrations-mlsa.vercel.app'],
 	})
 );
 
