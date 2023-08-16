@@ -47,63 +47,33 @@ app.get("/api/health", (req, res) => {
 const registrationSchema = new Schema({
     name: {
         type: String,
-        required: [true, 'Name Required'],
-        minlength: [2, 'Name should have at least 2 characters'],
-        maxlength: [30, 'Name should have at most 30 characters']
     },
     rollNumber: {
         type: String,
-        required: [true, 'Roll Number Required'],
-        minlength: [6, 'Roll Number should have at least 6 characters'],
-        maxlength: [9, 'Roll Number should have at most 9 characters']
     },
     currentYear: {
         type: String,
-        required: [true, 'Current Year Required'],
-        validate: {
-            validator: (value) => value.length === 1,
-            message: 'Current Year should have exactly 1 character'
-        }
     },
     branch: {
         type: String,
-        required: [true, 'Branch Required'],
-        minlength: [1, 'Branch should have at least 1 character'],
-        maxlength: [25, 'Branch should have at most 25 characters'],
-        validate: {
-            validator: (value) => /^(?=.*[A-Za-z])/.test(value),
-            message: 'Branch should contain at least one alphabet'
-        }
     },
     kiitEmailId: {
         type: String,
-        required: [true, 'KIIT Email Required'],
-        validate: {
-            validator: (value) => /^[A-Z0-9._%+-]+@kiit\.ac\.in$/i.test(value),
-            message: 'KIIT Email should be a valid KIIT email address'
-        }
     },
     personalEmailId: {
         type: String,
-        required: [true, 'Personal Email Required'],
-        validate: {
-            validator: (value) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value),
-            message: 'Personal Email should be a valid email address'
-        }
     },
     phoneNumber: {
         type: String,
-        required: [true, 'Phone Number Required'],
-        minlength: [10, 'Phone Number should have at least 10 digits'],
-        maxlength: [15, 'Phone Number should have at most 15 digits'],
-        validate: {
-            validator: (value) => /^\d+$/.test(value),
-            message: 'Phone Number should contain only digits'
-        }
     },
-    interestedField: {
+    interestedField1: {
         type: String,
-        required: true,
+    },
+    interestedField2: {
+        type: String,
+    },
+    interestedField3: {
+        type: String,
     },
     linkedin: {
         type: String,
@@ -111,9 +81,6 @@ const registrationSchema = new Schema({
     },
     github: {
         type: String,
-        required: [true, 'Github Required'],
-        minlength: [2, 'Github should have at least 2 characters'],
-        maxlength: [100, 'Github should have at most 100 characters']
     },
     expectation: {
         type: String,
@@ -136,7 +103,7 @@ const reg = model('registration', registrationSchema);
 //API Endpoints for registrations
 app.post("/api/register", async (req, res) => {
     try {
-        const { name, rollNumber, currentYear, branch, kiitEmailId, personalEmailId, phoneNumber, interestedField, linkedin, github, expectation } = req.body;
+        const { name, rollNumber, currentYear, branch, kiitEmailId, personalEmailId, phoneNumber, interestedField1,interestedField2,interestedField3, linkedin, github, expectation } = req.body;
         const ip = req.ip;
         const host = req.get('host');
         const userAgent = req.get('user-agent');
@@ -146,7 +113,7 @@ app.post("/api/register", async (req, res) => {
         }
         
         const registration = new reg({
-            name, rollNumber, currentYear, branch, kiitEmailId, personalEmailId, phoneNumber, interestedField, linkedin, github, expectation,
+            name, rollNumber, currentYear, branch, kiitEmailId, personalEmailId, phoneNumber, interestedField1,interestedField3,interestedField3, linkedin, github, expectation,
             ip,
             host,
             userAgent,
