@@ -21,7 +21,7 @@ const initialValues = {
   interestedField2: "",
   interestedField3: "",
   linkedin: "N/A",
-  github: "",
+  github: "N/A",
   expectation: "N/A",
 };
 
