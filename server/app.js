@@ -1,70 +1,47 @@
 const express = require("express");
-const { connect, Schema, model } = require("mongoose");
-const dotenv = require('dotenv');
+const { set, connect, model, Schema } = require("mongoose");
 const cors = require("cors");
-const Joi = require("joi");
-dotenv.config();
-const { MONGO_URI } = process.env;
-console.log(MONGO_URI);
+const cookieParser = require("cookie-parser");
+const { success, error } = require("consola");
+const { DB, REQUEST_TIMEOUT, PORT } = require("./config/db");
+
+//Routes Imports
+
 
 const app = express();
 
-//For parsing the body as json and it is also important if you want to access body data as req.body.*
+
+//CORS Definition
 app.use(
-    cors({
-        credentials: true,
-        origin: ['https://frontend.unknownclub.me', 'http://localhost:5173'],
-    })
+	cors({
+		credentials: true,
+		origin: ['https://f.adityachoudhury.com','https://mlsa.unknownclub.me','http://localhost:5173','https://registration-form-mlsa-kiit-1zk4inwdf-adityasubham03.vercel.app/','https://registration-form-mlsa-kiit-nu.vercel.app/','https://registration-form-mlsa-kiit-agfeeqtr1-adityasubham03.vercel.app/','https://registration-form-mlsa-kiit-git-main-adityasubham03.vercel.app/'],
+	})
 );
+
+//For getting req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 
-//Server Side Data validations
-const registerSchema = Joi.object({
-    name: Joi.string().min(2).max(30).required().messages({
-        'any.required': 'Name Required',
-        'string.min': 'Name should have at least 2 characters',
-        'string.max': 'Name should have at most 30 characters'
-    }),
-    rollNumber: Joi.string().min(6).max(9).required().messages({
-        'any.required': 'Roll Number Required',
-        'string.min': 'Roll Number should have at least 6 characters',
-        'string.max': 'Roll Number should have at most 9 characters'
-    }),
-    currentYear: Joi.string().length(1).required().messages({
-        'any.required': 'Current Year Required',
-        'string.length': 'Current Year should have exactly 1 character'
-    }),
-    branch: Joi.string().min(1).max(25).required().pattern(/^(?=.*[A-Za-z])/).messages({
-        'any.required': 'Branch Required',
-        'string.min': 'Branch should have at least 1 character',
-        'string.max': 'Branch should have at most 25 characters',
-        'string.pattern.base': 'Branch should contain at least one alphabet'
-    }),
-    kiitEmailId: Joi.string().email().required().messages({
-        'any.required': 'KIIT Email Required',
-        'string.email': 'KIIT Email should be a valid email address'
-    }),
-    personalEmailId: Joi.string().email().required().messages({
-        'any.required': 'Personal Email Required',
-        'string.email': 'Personal Email should be a valid email address'
-    }),
-    interestedField: Joi.string().required(),
-    phoneNumber: Joi.string().min(10).max(15).required().pattern(/^\d+$/).messages({
-        'any.required': 'Phone Number Required',
-        'string.min': 'Phone Number should have at least 10 digits',
-        'string.max': 'Phone Number should have at most 15 digits',
-        'string.pattern.base': 'Phone Number should contain only digits'
-    }),
-    linkedin: Joi.string().optional(),
-    github: Joi.string().min(2).max(100).required().messages({
-        'any.required': 'Github Required',
-        'string.min': 'Github should have at least 2 characters',
-        'string.max': 'Github should have at most 100 characters'
-    }),
-    expectation: Joi.string().optional(),
+//Api Endpoints
+
+
+app.post("/", (req, res, next) => {
+	res.send({
+		message: "POST request is not allowed in this endpoint!!",
+		success: false,
+	});
 });
+
+app.get("/api/health", (req, res) => {
+	res.send({
+		message: "Server is Up and running",
+		success: true,
+	});
+});
+
 
 //Registrations MongoDB Schema
 const registrationSchema = new Schema({
@@ -185,33 +162,44 @@ app.post("/api/register", async (req, res) => {
 
 })
 
-//For all other non existent endpoints error will be generated
+
 app.use((req, res) => {
-    res.status(404).json({
-        reason: "invalid-request",
-        message:
-            "The endpoint you wanna reach is not available! Please check the endpoint again",
-        success: false,
-    });
+	res.status(404).json({
+		reason: "invalid-request",
+		message:
+			"The endpoint you wanna reach is not available! Please check the endpoint again",
+		success: false,
+	});
 });
 
 
-//Recursive function to connect to the database and start the app at a particular port
+
+//Database configuration and connection
 const startApp = async () => {
-    try {
-        // Connection With DB
-        await connect(MONGO_URI);
+	try {
+		// Connection With DB
+		await connect(DB, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			serverSelectionTimeoutMS: REQUEST_TIMEOUT,
+		});
 
-        console.log(`Successfully connected with the Database`);
+		success({
+			message: `Successfully connected with the Database \n${DB}`,
+			badge: true,
+		});
 
-        // Start Listenting for the server on PORT
-        app.listen(async () => {
-            console.log(`Server started on PORT 5000`);
-        });
-    } catch (err) {
-        console.log(`Unable to connect with Database \n${err}`);
-        startApp();
-    }
+		// Start Listenting for the server on PORT
+		app.listen(PORT, async () => {
+			success({ message: `Server started on PORT ${PORT}`, badge: true });
+		});
+	} catch (err) {
+		error({
+			message: `Unable to connect with Database \n${err}`,
+			badge: true,
+		});
+		startApp();
+	}
 };
 
 startApp();
