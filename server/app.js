@@ -113,7 +113,7 @@ app.post("/api/register", async (req, res) => {
         }
         
         const registration = new reg({
-            name, rollNumber, currentYear, branch, kiitEmailId, personalEmailId, phoneNumber, interestedField1,interestedField3,interestedField3, linkedin, github, expectation,
+            name, rollNumber, currentYear, branch, kiitEmailId, personalEmailId, phoneNumber, interestedField1,interestedField2,interestedField3, linkedin, github, expectation,
             ip,
             host,
             userAgent,

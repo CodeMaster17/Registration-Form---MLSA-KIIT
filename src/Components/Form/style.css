@@ -272,3 +272,20 @@ textarea:focus {
   line-height: 1.6rem;
   color: #000000;
 }
+
+.noteContainer {
+  background-color: #e1edff;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+
+.note {
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.6rem;
+  color: #3b61cf;
+}
+

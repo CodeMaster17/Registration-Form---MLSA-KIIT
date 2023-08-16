@@ -17,11 +17,12 @@ const initialValues = {
   kiitEmailId: "",
   personalEmailId: "",
   phoneNumber: "",
-  interestedField: "",
+  interestedField1: "",
+  interestedField2: "",
+  interestedField3: "",
   linkedin: "",
   github: "",
   expectation: "",
-  
 };
 
 const Form = () => {
@@ -33,13 +34,12 @@ const Form = () => {
     onSubmit: async (values, action) => {
       let res;
       try {
-        res = await axios.post("https://seashell-app-ol8xr.ondigitalocean.app/api/register", values);        
+        res = await axios.post("http://localhost:5000/api/register", values);
       } catch (error) {
         console.log(error);
         errNotify(error);
       }
       console.log(res);
-
 
       if (res.status === 200) {
         action.resetForm();
@@ -54,9 +54,9 @@ const Form = () => {
     <>
       <Toaster position="bottom-right" reverseOrder={false} />
       <div className="registrationForm">
-      <div className='registrationFormELLipse'>
-      <img src={docsIcon}/>
-      </div>
+        <div className="registrationFormELLipse">
+          <img src={docsIcon} />
+        </div>
         <div className="registrationFormContainer">
           <form onSubmit={handleSubmit}>
             <div className="registrationFormHeading formFirstHeading">
@@ -161,21 +161,24 @@ const Form = () => {
                 className={errors.phoneNumber && touched.phoneNumber ? "invalidInput" : ""}
               />
             </div>
+            <div className="noteContainer">
+              <p className="note">*Note:-Select different domains for each preference. Putting the same domain in every preference does not guarantee a spot in that domain</p>
+            </div>
             <div className="registrationInputField">
-              <label htmlFor="interestedField">Interested Field</label>
+              <label htmlFor="interestedField1">Interested Field 1</label>
               <select
                 type="text"
                 autoComplete="off"
-                id="interestedField"
-                name="interestedField"
-                placeholder="Please Select Your Interested Field"
+                id="interestedField1"
+                name="interestedField1"
+                placeholder="Please Select Your Interested Field 1"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.interestedField}
+                value={values.interestedField1}
                 required
-                className={errors.interestedField && touched.interestedField ? "invalidInput" : ""}
+                className={errors.interestedField1 && touched.interestedField1 ? "invalidInput" : ""}
               >
-                <option value="#">Select Interested Field</option>
+                <option value="#">Select Interested Field 1</option>
                 <option value="web-ui">Web Dev & UI/UX</option>
                 <option value="app-ui">App Dev & UI/UX</option>
                 <option value="cyber">Cyber Security</option>
@@ -184,6 +187,59 @@ const Form = () => {
                 <option value="ai-ml">AI/ML</option>
               </select>
             </div>
+
+            <div className="registrationInputField">
+              <label htmlFor="interestedField2">Interested Field 2</label>
+              <select
+                type="text"
+                autoComplete="off"
+                id="interestedField2"
+                name="interestedField2"
+                placeholder="Please Select Your Interested Field 2"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.interestedField2}
+                required
+                className={
+                  errors.interestedField2 && touched.interestedField2 ? "invalidInput" : ""
+                }
+              >
+                <option value="#">Select Interested Field 2</option>
+                <option value="web-ui">Web Dev & UI/UX</option>
+                <option value="app-ui">App Dev & UI/UX</option>
+                <option value="cyber">Cyber Security</option>
+                <option value="cloud">Cloud</option>
+                <option value="ar-vr">AR/VR</option>
+                <option value="ai-ml">AI/ML</option>
+              </select>
+            </div>
+
+            <div className="registrationInputField">
+              <label htmlFor="interestedField3">Interested Field 3</label>
+              <select
+                type="text"
+                autoComplete="off"
+                id="interestedField3"
+                name="interestedField3"
+                placeholder="Please Select Your Interested Field 3"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.interestedField3}
+                required
+                className={
+                  errors.interestedField3 && touched.interestedField3 ? "invalidInput" : ""
+                }
+              >
+                <option value="#">Select Interested Field 3</option>
+                <option value="web-ui">Web Dev & UI/UX</option>
+                <option value="app-ui">App Dev & UI/UX</option>
+                <option value="cyber">Cyber Security</option>
+                <option value="cloud">Cloud</option>
+                <option value="ar-vr">AR/VR</option>
+                <option value="ai-ml">AI/ML</option>
+              </select>
+            </div>
+
             <div className="registrationFormHeading formPadding">
               <p>Social information</p>
             </div>
@@ -238,8 +294,10 @@ const Form = () => {
             (errors.branch && touched.branch) ||
             (errors.kiitEmailId && touched.kiitEmailId) ||
             (errors.personalEmailId && touched.personalEmailId) ||
-              (errors.phoneNumber && touched.phoneNumber) ||
-              (errors.interestedField && touched.interestedField)||
+            (errors.phoneNumber && touched.phoneNumber) ||
+            (errors.interestedField1 && touched.interestedField1) ||
+            (errors.interestedField2 && touched.interestedField2) ||
+            (errors.interestedField3 && touched.interestedField3) ||
             (errors.linkedin && touched.linkedin) ||
             (errors.github && touched.github) ? (
               <div className="registrationFormErrorMessage">
