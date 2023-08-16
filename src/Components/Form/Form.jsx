@@ -20,9 +20,9 @@ const initialValues = {
   interestedField1: "",
   interestedField2: "",
   interestedField3: "",
-  linkedin: "",
+  linkedin: "N/A",
   github: "",
-  expectation: "",
+  expectation: "N/A",
 };
 
 const Form = () => {
@@ -34,7 +34,7 @@ const Form = () => {
     onSubmit: async (values, action) => {
       let res;
       try {
-        res = await axios.post("http://localhost:5000/api/register", values);
+        res = await axios.post("http://seashell-app-ol8xr.ondigitalocean.app/api/register", values);
       } catch (error) {
         console.log(error);
         errNotify(error);

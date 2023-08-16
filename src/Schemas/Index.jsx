@@ -11,7 +11,7 @@ export const signUpSchema = Yup.object({
   interestedField1: Yup.string().required(),
   interestedField2: Yup.string().required(),
   interestedField3: Yup.string().required(),
-  linkedin: Yup.string().min(2).max(100),
+  linkedin: Yup.string().min(2).max(100).required(),
   github: Yup.string().min(2).max(100).required("Github Required"),
-  expectation: Yup.string(),
+  expectation: Yup.string().required(),
 });
