@@ -37,7 +37,8 @@ const Form = () => {
         res = await axios.post("https://seashell-app-ol8xr.ondigitalocean.app/api/register", values);
       } catch (error) {
         console.log(error);
-        errNotify(error);
+        // errNotify(error);
+        alert("User already registered!!");
       }
       console.log(res);
 
