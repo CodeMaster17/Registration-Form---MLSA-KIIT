@@ -1,7 +1,7 @@
 .registrationThankYou {
   width: 48.2rem;
-  background: #ffffff;
-  height: 100%;
+  background: #000000;
+  height: 100vh;
   position: relative;
 }
 .registrationThankYouContainer {
@@ -30,7 +30,7 @@
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 1.9rem;
-  color: #000000;
+  color: #ffffff;
   padding-top: 0.65rem;
 }
 .registrationThankYouSpan {
@@ -61,7 +61,7 @@
     width: 100%;
     margin-top: -20px;
     border-radius: 10px 10px 0px 0px;
-    height: 100%;
+    height: 84vh;
   }
   .registrationThankYouContainer {
     margin-left: 1.85rem;
